@@ -29,14 +29,15 @@ var app = {
         app.report('deviceready');
     },
     report: function(id) {
-        // Report the event in the console
-        console.log("Report: " + id);
-
-        // Toggle the state from "pending" to "complete" for the reported ID.
-        // Accomplished by adding .hide to the pending element and removing
-        // .hide from the complete element.
-        document.querySelector('#' + id + ' .pending').className += ' hide';
-        var completeElem = document.querySelector('#' + id + ' .complete');
-        completeElem.className = completeElem.className.split('hide').join('');
+        var now = new Date();
+        var days = new Array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+        var months = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
+        var date = ((now.getDate()<10) ? "0" : "")+ now.getDate();
+        function fourdigits(number)    
+        {
+            return (number < 1000) ? number + 1900 : number;
+        }
+        today =  days[now.getDay()] + ", " + months[now.getMonth()] + " " + date + ", " + (fourdigits(now.getYear())) ;
+        document.write(today);
     }
 };
