@@ -3,10 +3,10 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.brett.sample"
         version   = "1">
-    <name>Brett's App</name>
+    <name>Sample App</name>
 
     <description>
-        Brett's Sample App
+        Sample App
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
