@@ -1,44 +1,63 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<head>
+<title>Index Page</title>
 
-    http://www.apache.org/licenses/LICENSE-2.0
+<!-- Adding viewport -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no">
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery.mobile-1.2.0.js"></script>
-		<title>Sample App</title>
-    </head>
-    <body>
-        <div class="app">
-            <select>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-                <option value="Maybe">Maybe</option>
-            </select>
-        </div>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+<!-- Adding jQuery scripts -->
+<script type="text/javascript" src="js/jquery.js"></script>
+
+<!-- Since jQuery Mobile relies on jQuery core's $.ajax() functionality,
+ $.support.cors & $.mobile.allowCrossDomainPages must be set to true to tell
+ $.ajax to load cross-domain pages. -->
+<script type="text/javascript">
+    $(document).bind("mobileinit", function() {
+        $.support.cors = true;
+        $.mobile.allowCrossDomainPages = true;
+    });
+</script>
+
+<!-- Adding Phonegap scripts -->
+<script type="text/javascript" charset="utf-8"
+    src="cordova/cordova-1.8.0.js"></script>
+
+<!-- Adding jQuery mobile scripts & CSS -->
+<link rel="stylesheet" href="jquerymobile/jquery.mobile-1.1.0.min.css" />
+<script type="text/javascript"
+    src="js/jquery.mobile-1.2.0.js"></script>
+
+</head>
+<script type="text/javascript">
+    // Listener that will invoke the onDeviceReady() function as soon as phonegap has loaded properly
+    document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+        navigator.splashscreen.hide();
+
+        document.addEventListener("backbutton", onBackClickEvent, false); // Adding the back button listener    
+
+    }
+    </script>
+<body>
+<div data-role="page" id="something" data-ajax="false">
         <script type="text/javascript">
-            app.initialize();
+            $("#something").on("pageinit", function(e) {
+
+            });
+
+            $("#something").on("pageshow", function(e) {
+
+            });
+
+            $("#something").on("pagebeforeshow", function(e) {
+
+            });
         </script>
-    </body>
-</html>
+
+        <div data-role="header">            
+        </div>
+
+        <div data-role="content">           
+        </div>      
+    </div>
+</body>  
