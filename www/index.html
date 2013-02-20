@@ -39,10 +39,16 @@ function onDeviceReady() {
     }
     </script>
 <body>
+	<select>
+		<option value="Yes">Yes</option>
+		<option value="No">No</option>
+		<option value="Maybe">Maybe</option>
+		<option value="HYes">Hells Yes</option>		
+	</select>
 <div data-role="page" id="something" data-ajax="false">
         <script type="text/javascript">
             $("#something").on("pageinit", function(e) {
-				document.print("I've Initialized");
+
             });
 
             $("#something").on("pageshow", function(e) {
@@ -55,7 +61,7 @@ function onDeviceReady() {
         </script>
 
         <div data-role="header">    
-			blah
+		
         </div>
 
         <div data-role="content">           
