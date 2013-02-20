@@ -23,7 +23,7 @@
     src="cordova/cordova-1.8.0.js"></script>
 
 <!-- Adding jQuery mobile scripts & CSS -->
-<link rel="stylesheet" href="themes/Blue.min.css" />
+<link rel="stylesheet" href="themes/VarietyABC.min.css" />
 <link rel="stylesheet" href="css/jquerycss.css" />
 <script src="js/jquerymobile.js"></script>
 
@@ -39,7 +39,7 @@ function onDeviceReady() {
     }
     </script>
 <body>
-	<div data-role="page" id="Home" data-ajax="false">
+	<div data-role="page" data-theme="a" id="Home" data-ajax="false">
         <div data-role="header">    
 			<h1>Pocket Politician</h1>
 			<h2>The Easiest Way to Make your Voice Heard</h2>
@@ -66,20 +66,35 @@ function onDeviceReady() {
 		</div>
     </div>
 	
-	<div data-role="page" id="dialogcall" data-ajax="false">
+	<div data-role="page" data-theme="b" id="dialogcall">
         <div data-role="header">    
-			<h1>Dialog</h1>
+			<h1>Call your Rep</h1>
         </div>
 
         <div data-role="content"> 
-			Are you sure?!
-			<a href="#Page1" data-rel="back">Back</a>
+			Do you want to place this call?
+			<a href="#Home" data-role="button" data-icon="delete" data-rel="back">Cancel</a>
+			<a href="Phone:7754123616" data-role="button" data-icon="grid">Call</a>
 		</div> 
 		
 		<div data-role="footer">
-			<p>
-				Bottom
-			</p>
+
+		</div>
+    </div>
+	
+	<div data-role="page" data-theme="c" id="dialogemail">
+        <div data-role="header">    
+			<h1>Email your Rep</h1>
+        </div>
+
+        <div data-role="content"> 
+			Do you want to place this call?
+			<a href="#Home" data-role="button" data-icon="delete" data-rel="back">Cancel</a>
+			<a href="Mailto:brettgottier@gmail.com" data-role="button" data-icon="arror-r">Email</a>
+		</div> 
+		
+		<div data-role="footer">
+
 		</div>
     </div>
 </body>  
