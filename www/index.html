@@ -39,7 +39,7 @@ function onDeviceReady() {
     }
     </script>
 <body>
-<div data-role="page" id="something" data-ajax="false">
+	<div data-role="page" id="Page1" data-ajax="false">
         <script type="text/javascript">
             $("#something").on("pageinit", function(e) {
 
@@ -55,16 +55,41 @@ function onDeviceReady() {
         </script>
 
         <div data-role="header">    
-		
+			<h1>Header 1</h1>
         </div>
 
-        <div data-role="content">   
+        <div data-role="content">  
+			<a href="#Page2" data-rel="dialog" data-role="button" data-icon="info">More Info</a>
+			<br/>
 			<select>
 				<option value="Yes">Yes</option>
 				<option value="No">No</option>
 				<option value="Maybe">Maybe</option>
 				<option value="HYes">Hells Yes</option>		
 			</select>
-        </div>      
+        </div> 
+		
+		<div data-role="footer">
+			<p>
+				Foot
+			</p>
+		</div>
+    </div>
+	
+	<div data-role="page" id="Page2" data-ajax="false">
+        <div data-role="header">    
+			<h1>Dialog</h1>
+        </div>
+
+        <div data-role="content"> 
+			Are you sure?!
+			<a href="#Page1" data-rel="back">Back</a>
+		</div> 
+		
+		<div data-role="footer">
+			<p>
+				Bottom
+			</p>
+		</div>
     </div>
 </body>  
