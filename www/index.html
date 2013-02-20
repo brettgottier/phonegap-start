@@ -3,7 +3,7 @@
 
 <!-- Adding viewport -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta name="viewport" content="width=device-width, user-scalable=yes">
 
 <!-- Adding jQuery scripts -->
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -42,7 +42,7 @@ function onDeviceReady() {
 <div data-role="page" id="something" data-ajax="false">
         <script type="text/javascript">
             $("#something").on("pageinit", function(e) {
-
+				document.print("I've Initialized");
             });
 
             $("#something").on("pageshow", function(e) {
