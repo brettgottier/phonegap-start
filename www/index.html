@@ -1,97 +1,113 @@
+﻿<!DOCTYPE html>
+<html manifest="offline.appcache">
 <head>
-<title>Index Page</title>
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>New project</title>
+	
+	<!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon" sizes="256x256" href="icon-256.png" />
+	<meta name="HandheldFriendly" content="true" />
+	
+	<!-- Chrome for Android web app tags -->
+	<meta name="mobile-web-app-capable" content="yes" />
+	<link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
 
-<!-- Adding viewport -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, user-scalable=yes">
+    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			background: #000;
+			color: #fff;
+			overflow: hidden;
+			-ms-touch-action: none;
+		}
+		canvas {
+			touch-action-delay: none;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+    </style>
+	
 
-<!-- Adding jQuery scripts -->
-<script type="text/javascript" src="js/jquery.js"></script>
+</head> 
+ 
+<body> 
+	<div id="fb-root"></div>
+	
+	<script>
+	// Issue a warning if trying to preview an exported project on disk.
+	(function(){
+		// Check for running exported on file protocol
+		if (window.location.protocol.substr(0, 4) === "file")
+		{
+			alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
+		}
+	})();
+	</script>
+	
+	<!-- The canvas must be inside a div called c2canvasdiv -->
+	<div id="c2canvasdiv">
+	
+		<!-- The canvas the project will render to.  If you change its ID, don't forget to change the
+		ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
+		<canvas id="c2canvas" width="854" height="480">
+			<!-- This text is displayed if the visitor's browser does not support HTML5.
+			You can change it, but it is a good idea to link to a description of a browser
+			and provide some links to download some popular HTML5-compatible browsers. -->
+			<h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+			<br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
+			<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
+			<a href="http://www.google.com/chrome/">Google Chrome</a><br/>
+			<a href="http://www.apple.com/safari/download/">Apple Safari</a><br/>
+			<a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/></h1>
+		</canvas>
+		
+	</div>
+	
+	<!-- Pages load faster with scripts at the bottom -->
+	
+	<!-- Construct 2 exported games require jQuery. -->
+	<script src="jquery-2.0.0.min.js"></script>
 
-<!-- Since jQuery Mobile relies on jQuery core's $.ajax() functionality,
- $.support.cors & $.mobile.allowCrossDomainPages must be set to true to tell
- $.ajax to load cross-domain pages. -->
-<script type="text/javascript">
-    $(document).bind("mobileinit", function() {
-        $.support.cors = true;
-        $.mobile.allowCrossDomainPages = true;
-    });
-</script>
 
-<!-- Adding Phonegap scripts -->
-<script type="text/javascript" charset="utf-8"
-    src="cordova/cordova-1.8.0.js"></script>
+	
+    <!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
+    This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
+	<script src="c2runtime.js"></script>
 
-<!-- Adding jQuery mobile scripts & CSS -->
-<link rel="stylesheet" href="themes/VarietyABC.min.css" />
-<link rel="stylesheet" href="css/jquerycss.css" />
-<script src="js/jquerymobile.js"></script>
-
-</head>
-<script type="text/javascript">
-    // Listener that will invoke the onDeviceReady() function as soon as phonegap has loaded properly
-    document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-        navigator.splashscreen.hide();
-
-        document.addEventListener("backbutton", onBackClickEvent, false); // Adding the back button listener    
-
-    }
+    <script>
+		// Size the canvas to fill the browser viewport.
+		jQuery(window).resize(function() {
+			cr_sizeCanvas(jQuery(window).width(), jQuery(window).height());
+		});
+		
+		// Start the Construct 2 project running on window load.
+		jQuery(document).ready(function ()
+		{			
+			// Create new runtime using the c2canvas
+			cr_createRuntime("c2canvas");
+		});
+		
+		// Pause and resume on page becoming visible/invisible
+		function onVisibilityChanged() {
+			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+				cr_setSuspended(true);
+			else
+				cr_setSuspended(false);
+		};
+		
+		document.addEventListener("visibilitychange", onVisibilityChanged, false);
+		document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+		
     </script>
-<body>
-	<div data-role="page" data-theme="a" id="Home" data-ajax="false">
-        <div data-role="header">    
-			<h1>Pocket Politician</h1>
-        </div>
-		
-        <div data-role="content">
-			<h5>The Easiest Way to Make your Voice Heard</h5>
-			<h3>Sen Harry Reid, D - NV</h3>
-			<a href="#dialogcall" data-inline="true" data-rel="dialog" data-role="button" data-icon="grid">Call</a>
-			<a href="#dialogemail" data-inline="true" data-rel="dialog" data-role="button" data-icon="alert">Email</a>
-			<br/>
-			<h3>Rep. Mark Amodei, R - NV</h3>
-			<a href="#dialogcall" data-inline="true" data-rel="dialog" data-role="button" data-icon="grid">Call</a>
-			<a href="#dialogemail" data-inline="true" data-rel="dialog" data-role="button" data-icon="alert">Email</a>
-        </div> 
-		
-		<div data-role="footer">
-			<p>
-				<h5>Home:My News:Campaign:Profiles</h5>
-				<br/>
-			</p>
-		</div>
-    </div>
-	
-	<div data-role="page" data-theme="b" id="dialogcall">
-        <div data-role="header">    
-			<h1>Call your Rep</h1>
-        </div>
-
-        <div data-role="content"> 
-			Do you want to place this call?
-			<a href="#Home" data-role="button" data-icon="delete" data-rel="back">Cancel</a>
-			<a href="tel://1-775-412-3616" data-role="button" data-icon="grid">Call</a>
-		</div> 
-		
-		<div data-role="footer">
-
-		</div>
-    </div>
-	
-	<div data-role="page" data-theme="c" id="dialogemail">
-        <div data-role="header">    
-			<h1>Email your Rep</h1>
-        </div>
-
-        <div data-role="content"> 
-			Do you want to place this call?
-			<a href="#Home" data-role="button" data-icon="delete" data-rel="back">Cancel</a>
-			<a href="Mailto:brettgottier@gmail.com" data-role="button" data-icon="arrow-r">Email</a>
-		</div> 
-		
-		<div data-role="footer">
-
-		</div>
-    </div>
-</body>  
+</body> 
+</html> 
